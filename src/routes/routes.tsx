@@ -10,22 +10,6 @@ const routes: RouteObject[] = [{
       index: true,
       element: <LoginPage />,
     },
-/*     {
-      path: 'homepage',
-      element: <HomePage />
-    },
-    {
-      path: 'dashboard/:username',
-      element: (
-          <PrivateRoute>
-            <DashboardPage />
-          </PrivateRoute>
-        ),
-    },
-    {
-      path: '*',
-      element: <NotFoundPage />
-    }, */
   ]
 }];
 

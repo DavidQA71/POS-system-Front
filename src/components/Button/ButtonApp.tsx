@@ -5,13 +5,13 @@ interface IButtonProps {
   label: string;
   action: (e:any) => void;
   btnVariant?: 'text' | 'contained' | 'outlined';
-  disable?: boolean;
+  disabled?: boolean;
 }
 
-const ButtonApp = ({ label, action, btnVariant='contained' }: IButtonProps) => {
+const ButtonApp = ({ label, action, btnVariant='contained', disabled=false }: IButtonProps) => {
 
 	return (
-		<Button onClick={action}  variant={btnVariant}>
+		<Button onClick={action}  variant={btnVariant} disabled={disabled}>
 			{label}
 		</Button>
 	);

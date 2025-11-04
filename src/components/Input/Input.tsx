@@ -9,11 +9,11 @@ interface IInputProps {
   inputVariant: 'outlined' | 'filled' | 'standard';
 }
 
-const InputApp = ({ label, value ,onChange, inputVariant='standard' }: IInputProps) => {
+const Input = ({ label, value ,onChange, inputVariant='standard' }: IInputProps) => {
 
   return (
     <TextField label={label} value={value} onChange={onChange} variant={inputVariant}/>
   )
 };
 
-export default InputApp;
+export default Input;
