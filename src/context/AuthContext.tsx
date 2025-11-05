@@ -30,6 +30,7 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
     }));
   };
 
+  /*TODO: hacer validacion de usuario */
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     localStorage.setItem('authToken','mock-token');

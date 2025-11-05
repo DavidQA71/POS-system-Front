@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 interface IButtonProps {
   label: string;
-  action: (e:any) => void;
+  action: (e:React.MouseEvent<HTMLButtonElement>) => void;
   btnVariant?: 'text' | 'contained' | 'outlined';
   disabled?: boolean;
 }
