@@ -1,5 +1,5 @@
 import FormLogin from "../../modules/login/FormLogin";
-
+import "./loginPage.css";
 
 
 
@@ -7,7 +7,10 @@ const LoginPage = () => {
 
 
   return (
-    <FormLogin />
+    <div className="container">
+      <FormLogin />
+    </div>
+
   )
 };
 

@@ -1,8 +1,9 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getValidUser } from "../services/loginService";
 
 interface LoginData {
-  user: string,
+  email: string,
   password: string
 }
 
@@ -14,14 +15,14 @@ interface IAuthContext {
 
 export const AuthContext = createContext<IAuthContext>({
   handleLogin: () => {},
-  loginData: { user: '', password: '' },
+  loginData: { email: '', password: '' },
   handleChange: () => {},
 })
 
 const AuthProvider = ({ children }: {children:React.ReactNode}) => {
 
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState<LoginData>({ user: '', password: '' });
+  const [loginData, setLoginData] = useState<LoginData>({ email: '', password: '' });
 
   const handleChange = (key: keyof LoginData, value: string) => {
     setLoginData(prev => ({
@@ -31,10 +32,23 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
   };
 
   /*TODO: hacer validacion de usuario */
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    localStorage.setItem('authToken','mock-token');
-    navigate(`/dashboard`);
+
+    if(!loginData.email || !loginData.password) {
+      alert("Por favor completar todos los campos");
+      return;
+    }
+
+    try {
+      const data = await getValidUser(loginData);
+
+        sessionStorage.setItem('token', data.token);
+        navigate(`/dashboard`);
+      
+    } catch (error:any) {
+      alert(error.message || "Error al iniciar sesion");
+    }
   }
 
 
