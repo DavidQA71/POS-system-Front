@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
     }));
   };
 
-  /*TODO: hacer validacion de usuario */
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
