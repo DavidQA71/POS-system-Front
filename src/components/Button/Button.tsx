@@ -1,5 +1,5 @@
 import './Button.css';
-import Button from '@mui/material/Button';
+import BtnMui from '@mui/material/Button';
 
 interface IButtonProps {
   label: string;
@@ -9,13 +9,13 @@ interface IButtonProps {
   disabled?: boolean;
 }
 
-const ButtonApp = ({ label, action, btnVariant='contained', disabled=false, type }: IButtonProps) => {
+const Button = ({ label, action, btnVariant='contained', disabled=false, type }: IButtonProps) => {
 
 	return (
-		<Button onClick={action}  variant={btnVariant} disabled={disabled} type={type}>
+		<BtnMui onClick={action}  variant={btnVariant} disabled={disabled} type={type}>
 			{label}
-		</Button>
+		</BtnMui>
 	);
 }
 
-export default ButtonApp;
+export default Button;

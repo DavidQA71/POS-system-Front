@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Input from "../../components/Input/Input";
 import { AuthContext } from '../../context/AuthContext'
-import ButtonApp from "../../components/Button/ButtonApp";
+import Button from "../../components/Button/Button";
 import './FormLogin.css';
 
 
@@ -12,7 +12,7 @@ const FormLogin = () => {
 
   return (
     <main className="mainContainer">
-      <h2 className="titleForm">Factory</h2>
+      <h1 className="titleForm">Factory</h1>
       <form onSubmit={handleLogin} className="formContainer">
         <div className='inputContainer'>
           <Input 
@@ -27,7 +27,7 @@ const FormLogin = () => {
             inputVariant='filled'/>
         </div>
         <div className='btnContainer'>
-          <ButtonApp label="Ingresar" action={()=>{}} type="submit" />
+          <Button label="Ingresar" action={()=>{}} type="submit" />
         </div>
 
       </form>

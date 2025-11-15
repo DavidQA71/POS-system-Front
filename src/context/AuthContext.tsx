@@ -35,6 +35,7 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+/*TODO: Cambiar alert actual por sweet alerts, una libreria */
     if(!loginData.email || !loginData.password) {
       alert("Por favor completar todos los campos");
       return;
@@ -42,12 +43,16 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
 
     try {
       const data = await getValidUser(loginData);
+      
+      if (!data || !data.token) {
+        throw new Error("Error al iniciar sesión");
+      }
 
         sessionStorage.setItem('token', data.token);
         navigate(`/dashboard`);
       
     } catch (error:any) {
-      alert(error.message || "Error al iniciar sesion");
+      alert(error);
     }
   }
 
