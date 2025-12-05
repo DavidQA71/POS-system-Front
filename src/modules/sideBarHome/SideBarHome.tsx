@@ -15,7 +15,7 @@ const SideBarHome = () => {
   return(
     <div>
       <SideBar items={menuItems} />
-      <h1>Bienvenido</h1>chrome
+      <h1>Bienvenido</h1>
     </div>
   );
 }
