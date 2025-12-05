@@ -1,6 +1,8 @@
 import type { RouteObject } from "react-router-dom";
 import LoginPage from "../pages/login/LoginPage";
+import HomePage from "../pages/home/HomePage";
 import Layout from "../components/Layout/Layout";
+import HomeProvider from "../context/HomeContext";
 
 
 const routes: RouteObject[] = [{
@@ -10,6 +12,14 @@ const routes: RouteObject[] = [{
       index: true,
       element: <LoginPage />,
     },
+    {
+      path: 'HomePage',
+      element: (
+        <HomeProvider>
+          <HomePage />
+        </HomeProvider>
+      ) 
+    }
   ]
 }];
 

@@ -48,8 +48,8 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
         throw new Error("Error al iniciar sesión");
       }
 
-        sessionStorage.setItem('token', data.token);
-        navigate(`/dashboard`);
+        localStorage.setItem('token', data.token);
+        navigate(`/HomePage`);
       
     } catch (error:any) {
       alert(error);
