@@ -13,17 +13,15 @@ interface ISideBarProps {
 const SideBar = ({ items }: ISideBarProps) => {
 
   return(
-    <aside>
-      <nav>
-        <ul>
+      <nav className='nav-sidebar'>
+        <ul className='sidebar-list'>
           {items.map((items,index) => (
-            <li key={index}>
-                <Link to={items.path}>{items.label}</Link>
+            <li key={index} className='sidebar-item'>
+                <Link to={items.path} className='sidebar-link'>{items.label}</Link>
             </li>
           ))}
         </ul>
       </nav>
-    </aside>
   )
 };
 

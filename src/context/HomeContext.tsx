@@ -5,17 +5,20 @@ import { createContext, useEffect, useState } from "react";
 interface IHomeContext {
   handleRoles: () => Promise<void>;
   isAdmin: boolean;
+  nameUser: string;
 }
 
 
 export const HomeContext = createContext<IHomeContext>({
   handleRoles: async () => {},
-  isAdmin: false
+  isAdmin: false,
+  nameUser: ''
 });
 
 const HomeProvider = ({ children }: {children:React.ReactNode}) => {
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [nameUser, setNameUser] = useState('');
 
 
   const handleRoles = async () => {
@@ -23,12 +26,12 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
 
       const data = await getRoles();
       console.log(data)
-
-      if (!data || !data.role) {
-        throw new Error("Error al encontrar rol de usuario");
+      if (!data || !data.role || !data.name) {
+        throw new Error("Error al encontrar rol de usuario o nombre");
       }
 
       setIsAdmin(data.role === 'Administrador');
+      setNameUser(data.name);
     }
     catch (error) {
       alert(error);
@@ -40,7 +43,7 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
   }, []);
 
   return (
-    <HomeContext.Provider value={{ isAdmin, handleRoles }}>
+    <HomeContext.Provider value={{ isAdmin, handleRoles, nameUser }}>
       {children}
     </HomeContext.Provider>
     );

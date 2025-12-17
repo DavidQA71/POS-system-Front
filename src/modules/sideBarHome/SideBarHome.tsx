@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { HomeContext } from '../../context/HomeContext';
 
 const SideBarHome = () => {
-  const { isAdmin } = useContext(HomeContext);
-
+  const { isAdmin, nameUser } = useContext(HomeContext);
+  console.log(nameUser)
   const menuItems = [
     { path: '/caja', label: 'Caja' },
     { path: '/stock', label: 'Stock' },
@@ -13,9 +13,13 @@ const SideBarHome = () => {
   ]
 
   return(
-    <div>
-      <SideBar items={menuItems} />
-      <h1>Bienvenido</h1>
+    <div className='homeContainer'>
+      <main className='mainHomeContainer'>
+        <h1 id='welcomeHome'>{`Bienvenido, ${nameUser}`}</h1>
+      </main>
+      <aside className='sidebarHomeContainer'>
+        <SideBar items={menuItems} />
+      </aside>
     </div>
   );
 }
