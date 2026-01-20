@@ -5,36 +5,36 @@ import { createContext, useEffect, useState } from "react";
 interface IHomeContext {
   handleRoles: () => Promise<void>;
   isAdmin: boolean;
-  nameUser: string;
+  nameUser: string | null;
 }
 
 
 export const HomeContext = createContext<IHomeContext>({
   handleRoles: async () => {},
   isAdmin: false,
-  nameUser: ''
+  nameUser: null
 });
 
 const HomeProvider = ({ children }: {children:React.ReactNode}) => {
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [nameUser, setNameUser] = useState('');
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [nameUser, setNameUser] = useState<string | null>(null);
 
 
-  const handleRoles = async () => {
+  const handleRoles = async (): Promise<void> => {
     try {
 
       const data = await getRoles();
-      console.log(data)
-      if (!data || !data.role || !data.name) {
-        throw new Error("Error al encontrar rol de usuario o nombre");
-      }
 
       setIsAdmin(data.role === 'Administrador');
       setNameUser(data.name);
     }
-    catch (error) {
-      alert(error);
+    catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+    } else {
+        alert('Ocurrió un error inesperado');
+  }
     }
   }
 

@@ -15,7 +15,11 @@ const SideBarHome = () => {
   return(
     <div className='homeContainer'>
       <main className='mainHomeContainer'>
-        <h1 id='welcomeHome'>{`Bienvenido, ${nameUser}`}</h1>
+        <h1 id='welcomeHome'>
+          {nameUser 
+            ? `Bienvenido, ${nameUser}`
+            : `No se encontró el usuario`}
+        </h1>
       </main>
       <aside className='sidebarHomeContainer'>
         <SideBar items={menuItems} />

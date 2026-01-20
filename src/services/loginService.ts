@@ -1,3 +1,4 @@
+import { API_BASE_URL, API_ENDPOINTS } from './api';
 
 interface IUserVerify {
   email: string;
@@ -14,7 +15,7 @@ export async function getValidUser(loginData: IUserVerify) {
       },
       body: JSON.stringify(loginData)
     };
-    let response = await fetch('http://localhost:4000/users/login', options);
+    let response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.LOGIN}`, options);
     
     if (!response.ok) {
       const errorData = await response.json();
