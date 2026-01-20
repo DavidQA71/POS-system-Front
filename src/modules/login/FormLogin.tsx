@@ -24,7 +24,8 @@ const FormLogin = () => {
             label='Password'
             value= {loginData.password}
             onChange={(e)=>handleChange('password',e.target.value)}
-            inputVariant='filled'/>
+            inputVariant='filled'
+            type= 'password'/>
         </div>
         <div className='btnContainer'>
           <Button label="Ingresar" action={()=>{}} type="submit" />
