@@ -1,9 +1,8 @@
-import { API_BASE_URL, API_ENDPOINTS } from './api';
-import { STORAGE_KEYS } from './storage';
+import { API_BASE_URL, API_ENDPOINTS } from './api.config';
 
 export async function getRoles() {
   try {
-    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    const token = localStorage.getItem('token');
 
     const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.AUTH}`, {
       method: 'GET',

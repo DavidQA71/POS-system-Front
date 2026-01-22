@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_ENDPOINTS } from './api';
+import { API_BASE_URL, API_ENDPOINTS } from './api.config';
 
 interface IUserVerify {
   email: string;
