@@ -1,0 +1,30 @@
+.sidebar-list {
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.sidebar-item {
+  border-radius: 6px;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+    display: block;
+  padding: 10px 16px;
+}
+
+.sidebar-item:hover {
+  background-color: #f2f2f2;
+}
+
+.sidebar-item:hover .sidebar-link {
+  color: #000;
+}
