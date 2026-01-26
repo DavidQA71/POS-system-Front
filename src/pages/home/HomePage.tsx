@@ -4,6 +4,8 @@ import './HomePage.css';
 import SideBar from '../../components/SideBar/SideBar';
 import getMenuItems from '../../helpers/helper';
 
+import PersonIcon from '@mui/icons-material/Person';
+
 const HomePage = () => {
   const { isAdmin, nameUser } = useContext(HomeContext);
   const menuItems = getMenuItems(isAdmin);
@@ -11,12 +13,16 @@ const HomePage = () => {
   return(
     <>
       <div className='homeContainer'>
+        <nav className="navHome">
+          <h1 className='homeTitle'>Sistema de ventas factory</h1>
+        </nav>
         <main className='mainHomeContainer'>
-          <h1 id='welcomeHome'>
+          <h2 id='welcomeHome' className="welcomeContainer">
+            <PersonIcon sx={{fontSize: '100px'}} />
             {nameUser 
               ? `Bienvenido, ${nameUser}`
               : `No se encontró el usuario`}
-          </h1>
+          </h2>
         </main>
         <aside className='sidebarHomeContainer'>
           <SideBar items={menuItems} />

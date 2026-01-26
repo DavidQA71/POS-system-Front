@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
 import './SideBar.css';
 import { Link } from 'react-router-dom';
 
 interface ISideBarItem {
   path: string;
   label: string;
+  icon: ReactNode;
 }
 
 interface ISideBarProps {
@@ -17,7 +19,10 @@ const SideBar = ({ items }: ISideBarProps) => {
         <ul className='sidebar-list'>
           {items.map((items,index) => (
             <li key={index} className='sidebar-item'>
-                <Link to={items.path} className='sidebar-link'>{items.label}</Link>
+                <Link to={items.path} className='sidebar-link'>
+                  <span>{items.icon}</span>
+                  <span>{items.label}</span>
+                </Link>
             </li>
           ))}
         </ul>
