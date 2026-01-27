@@ -5,10 +5,12 @@ import SideBar from '../../components/SideBar/SideBar';
 import getMenuItems from '../../helpers/helper';
 
 import PersonIcon from '@mui/icons-material/Person';
+import { AuthContext } from '../../context/AuthContext';
 
 const HomePage = () => {
   const { isAdmin, nameUser } = useContext(HomeContext);
-  const menuItems = getMenuItems(isAdmin);
+  const { handleLogout } = useContext(AuthContext);
+  const menuItems = getMenuItems(isAdmin,handleLogout);
 
   return(
     <>

@@ -11,12 +11,14 @@ interface IAuthContext {
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   loginData: LoginData;
   handleChange: (key: keyof LoginData, value: string) => void;
+  handleLogout: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   handleLogin: () => {},
   loginData: { email: '', password: '' },
   handleChange: () => {},
+  handleLogout: () => {}
 })
 
 const AuthProvider = ({ children }: {children:React.ReactNode}) => {
@@ -57,9 +59,16 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
   }
 
 
+  const handleLogout = (): void => {
+    localStorage.removeItem('token');
+    setLoginData({ email: '', password: ''});
+    navigate('/');
+  }
+
   const defaultValue = {
     handleLogin,
-    handleChange, 
+    handleChange,
+    handleLogout,
     loginData
   };
 
