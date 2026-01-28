@@ -62,7 +62,7 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
   const handleLogout = (): void => {
     localStorage.removeItem('token');
     setLoginData({ email: '', password: ''});
-    navigate('/');
+    navigate('/', { replace: true});
   }
 
   const defaultValue = {

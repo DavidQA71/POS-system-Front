@@ -1,5 +1,7 @@
 import { getRoles } from "../services/HomeService";
 import { createContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 
 interface IHomeContext {
@@ -16,7 +18,8 @@ export const HomeContext = createContext<IHomeContext>({
 });
 
 const HomeProvider = ({ children }: {children:React.ReactNode}) => {
-
+  
+  const { handleLogout } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [nameUser, setNameUser] = useState<string | null>(null);
 
@@ -29,12 +32,8 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
       setIsAdmin(data.role === 'Administrador');
       setNameUser(data.name);
     }
-    catch (error: unknown) {
-      if (error instanceof Error) {
-        alert(error.message);
-    } else {
-        alert('Ocurrió un error inesperado');
-  }
+    catch (error) {
+      handleLogout();
     }
   }
 
