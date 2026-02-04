@@ -8,9 +8,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import { AuthContext } from '../../context/AuthContext';
 
 const HomePage = () => {
-  const { isAdmin, nameUser } = useContext(HomeContext);
+  const { userInfo } = useContext(HomeContext);
   const { handleLogout } = useContext(AuthContext);
-  const menuItems = getMenuItems(isAdmin,handleLogout);
+  const menuItems = getMenuItems(userInfo.isAdmin);
 
   return(
     <>
@@ -21,13 +21,13 @@ const HomePage = () => {
         <main className='mainHomeContainer'>
           <h2 id='welcomeHome' className="welcomeContainer">
             <PersonIcon sx={{fontSize: '100px'}} />
-            {nameUser 
-              ? `Bienvenido, ${nameUser}`
+            {userInfo.userName 
+              ? `Bienvenido, ${userInfo.userName}`
               : `No se encontró el usuario`}
           </h2>
         </main>
         <aside className='sidebarHomeContainer'>
-          <SideBar items={menuItems} />
+          <SideBar items={menuItems} onLogout={handleLogout}/>
         </aside>
       </div>
     </>

@@ -12,8 +12,13 @@ export async function getRoles() {
       },
     });
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.statusMessage);
+      const errorText = await response.text();
+
+      if (response.status === 401 || response.status === 403) {
+        throw new Error("Sesión expirada");
+      }
+
+      throw new Error(errorText);
     }
 
     const data = await response.json();
