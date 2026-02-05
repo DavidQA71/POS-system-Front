@@ -15,15 +15,13 @@ const HomePage = () => {
   return(
     <>
       <div className='homeContainer'>
-        <nav className="navHome">
+        <header className="navHome">
           <h1 className='homeTitle'>Sistema de ventas factory</h1>
-        </nav>
+        </header>
         <main className='mainHomeContainer'>
           <h2 id='welcomeHome' className="welcomeContainer">
             <PersonIcon sx={{fontSize: '100px'}} />
-            {userInfo.userName 
-              ? `Bienvenido, ${userInfo.userName}`
-              : `No se encontró el usuario`}
+            <span>Bienvenido, {userInfo.userName}</span>
           </h2>
         </main>
         <aside className='sidebarHomeContainer'>

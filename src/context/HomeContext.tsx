@@ -9,7 +9,6 @@ interface IUserInfo {
 }
 
 interface IHomeContext {
-  /* handleRoles: () => Promise<void>; */
   userInfo: IUserInfo
 }
 
@@ -20,7 +19,6 @@ const defaultUserInfo: IUserInfo = {
 }
 
 export const HomeContext = createContext<IHomeContext>({
-  /* handleRoles: async () => {}, */
   userInfo: defaultUserInfo
 });
 
