@@ -2,20 +2,20 @@ import { getRoles } from "../services/HomeService";
 import { createContext, useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import type { Role } from "../types/roles";
 
 interface IUserInfo {
   userName: string;
-  isAdmin: boolean;
+  role: Role;
 }
 
 interface IHomeContext {
   userInfo: IUserInfo
 }
 
-const ADMIN_ROLE = 'Administrador';
 const defaultUserInfo: IUserInfo = {
   userName: '',
-  isAdmin: false
+  role: 'Cajero'
 }
 
 export const HomeContext = createContext<IHomeContext>({
@@ -35,7 +35,7 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
 
       setUserInfo({
         userName: data.name,
-        isAdmin: data.role === ADMIN_ROLE
+        role: data.role
       })
     }
     catch (error) {

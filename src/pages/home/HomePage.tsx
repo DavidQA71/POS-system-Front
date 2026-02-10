@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/AuthContext';
 const HomePage = () => {
   const { userInfo } = useContext(HomeContext);
   const { handleLogout } = useContext(AuthContext);
-  const menuItems = getMenuItems(userInfo.isAdmin);
+  const menuItems = getMenuItems(userInfo.role, handleLogout);
 
   return(
     <>
@@ -25,7 +25,7 @@ const HomePage = () => {
           </h2>
         </main>
         <aside className='sidebarHomeContainer'>
-          <SideBar items={menuItems} onLogout={handleLogout}/>
+          <SideBar items={menuItems} />
         </aside>
       </div>
     </>
