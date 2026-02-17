@@ -1,24 +1,31 @@
 import { getRoles } from "../services/HomeService";
 import { createContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
+import type { Role } from "../types/roles";
 
-
-interface IHomeContext {
-  handleRoles: () => Promise<void>;
-  isAdmin: boolean;
-  nameUser: string | null;
+interface IUserInfo {
+  userName: string;
+  role: Role;
 }
 
+interface IHomeContext {
+  userInfo: IUserInfo
+}
+
+const defaultUserInfo: IUserInfo = {
+  userName: '',
+  role: 'Cajero'
+}
 
 export const HomeContext = createContext<IHomeContext>({
-  handleRoles: async () => {},
-  isAdmin: false,
-  nameUser: null
+  userInfo: defaultUserInfo
 });
 
 const HomeProvider = ({ children }: {children:React.ReactNode}) => {
-
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const [nameUser, setNameUser] = useState<string | null>(null);
+  
+  const { handleLogout } = useContext(AuthContext);
+  const [userInfo, setUserInfo] = useState<IUserInfo>(defaultUserInfo);
 
 
   const handleRoles = async (): Promise<void> => {
@@ -26,15 +33,13 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
 
       const data = await getRoles();
 
-      setIsAdmin(data.role === 'Administrador');
-      setNameUser(data.name);
+      setUserInfo({
+        userName: data.name,
+        role: data.role
+      })
     }
-    catch (error: unknown) {
-      if (error instanceof Error) {
-        alert(error.message);
-    } else {
-        alert('Ocurrió un error inesperado');
-  }
+    catch (error) {
+      handleLogout();
     }
   }
 
@@ -43,7 +48,7 @@ const HomeProvider = ({ children }: {children:React.ReactNode}) => {
   }, []);
 
   return (
-    <HomeContext.Provider value={{ isAdmin, handleRoles, nameUser }}>
+    <HomeContext.Provider value={{ userInfo }}>
       {children}
     </HomeContext.Provider>
     );

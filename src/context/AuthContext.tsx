@@ -7,22 +7,31 @@ interface LoginData {
   password: string
 }
 
+const defaultLoginData: LoginData = {
+  email: '',
+  password: ''
+};
+
 interface IAuthContext {
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   loginData: LoginData;
   handleChange: (key: keyof LoginData, value: string) => void;
+  handleLogout: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   handleLogin: () => {},
-  loginData: { email: '', password: '' },
+  loginData: defaultLoginData,
   handleChange: () => {},
+  handleLogout: () => {}
 })
+
+
 
 const AuthProvider = ({ children }: {children:React.ReactNode}) => {
 
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState<LoginData>({ email: '', password: '' });
+  const [loginData, setLoginData] = useState<LoginData>(defaultLoginData);
 
   const handleChange = (key: keyof LoginData, value: string) => {
     setLoginData(prev => ({
@@ -57,9 +66,16 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
   }
 
 
+  const handleLogout = (): void => {
+    localStorage.removeItem('token');
+    setLoginData(defaultLoginData);
+    navigate('/', { replace: true});
+  }
+
   const defaultValue = {
     handleLogin,
-    handleChange, 
+    handleChange,
+    handleLogout,
     loginData
   };
 

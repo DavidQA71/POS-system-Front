@@ -4,19 +4,25 @@ import './HomePage.css';
 import SideBar from '../../components/SideBar/SideBar';
 import getMenuItems from '../../helpers/helper';
 
+import PersonIcon from '@mui/icons-material/Person';
+import { AuthContext } from '../../context/AuthContext';
+
 const HomePage = () => {
-  const { isAdmin, nameUser } = useContext(HomeContext);
-  const menuItems = getMenuItems(isAdmin);
+  const { userInfo } = useContext(HomeContext);
+  const { handleLogout } = useContext(AuthContext);
+  const menuItems = getMenuItems(userInfo.role, handleLogout);
 
   return(
     <>
       <div className='homeContainer'>
+        <header className="navHome">
+          <h1 className='homeTitle'>Sistema de ventas factory</h1>
+        </header>
         <main className='mainHomeContainer'>
-          <h1 id='welcomeHome'>
-            {nameUser 
-              ? `Bienvenido, ${nameUser}`
-              : `No se encontró el usuario`}
-          </h1>
+          <h2 id='welcomeHome' className="welcomeContainer">
+            <PersonIcon sx={{fontSize: '100px'}} />
+            <span>Bienvenido, {userInfo.userName}</span>
+          </h2>
         </main>
         <aside className='sidebarHomeContainer'>
           <SideBar items={menuItems} />
