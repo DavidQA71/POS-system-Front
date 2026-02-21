@@ -58,7 +58,7 @@ const AuthProvider = ({ children }: {children:React.ReactNode}) => {
       }
 
         localStorage.setItem('token', data.token);
-        navigate(`/HomePage`);
+        navigate(`/homePage`);
       
     } catch (error:any) {
       alert(error);

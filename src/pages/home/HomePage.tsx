@@ -1,16 +1,16 @@
 import { useContext } from 'react';
 import { HomeContext } from '../../context/HomeContext';
 import './HomePage.css';
-import SideBar from '../../components/SideBar/SideBar';
-import getMenuItems from '../../helpers/helper';
+/* import SideBar from '../../components/SideBar/SideBar';
+import getMenuItems from '../../helpers/helper'; */
 
 import PersonIcon from '@mui/icons-material/Person';
-import { AuthContext } from '../../context/AuthContext';
+/* import { AuthContext } from '../../context/AuthContext'; */
 
 const HomePage = () => {
   const { userInfo } = useContext(HomeContext);
-  const { handleLogout } = useContext(AuthContext);
-  const menuItems = getMenuItems(userInfo.role, handleLogout);
+/*   const { handleLogout } = useContext(AuthContext);
+  const menuItems = getMenuItems(userInfo.role, handleLogout); */
 
   return(
     <>
@@ -24,9 +24,6 @@ const HomePage = () => {
             <span>Bienvenido, {userInfo.userName}</span>
           </h2>
         </main>
-        <aside className='sidebarHomeContainer'>
-          <SideBar items={menuItems} />
-        </aside>
       </div>
     </>
   );
